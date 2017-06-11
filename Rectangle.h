@@ -1,7 +1,6 @@
 #ifndef HFILE_RECTANGLE
 #define HFILE_RECTANGLE
 
-#include "General.h"
 
 
 

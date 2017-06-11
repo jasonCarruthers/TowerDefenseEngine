@@ -1,8 +1,7 @@
 #ifndef HFILE_CAMERA
 #define HFILE_CAMERA
 
-#include "General.h"
-#include "MyMath.h"
+
 
 
 class Camera

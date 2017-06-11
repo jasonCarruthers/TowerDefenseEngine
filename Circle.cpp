@@ -1,6 +1,10 @@
-#include "../include/General.h"
-#include "../include/MyMath.h"
-#include "../include/Circle.h"
+#include <vector>
+#include "../../include/General.h"
+#include "../../include/Utilities/MyMath.h"
+#include "../../include/Utilities/Vector.h"
+#include "../../include/2DGraphics/Color.h"
+#include "../../include/Window/Pixel.h"
+#include "../../include/2DGraphics/Circle.h"
 
 
 

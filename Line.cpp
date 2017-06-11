@@ -1,6 +1,11 @@
-#include "../include/General.h"
-#include "../include/Line.h"
-
+#include <iostream>
+#include <vector>
+#include "../../include/General.h"
+#include "../../include/Utilities/Vector.h"
+#include "../../include/2DGraphics/Color.h"
+#include "../../include/Utilities/MyMath.h"
+#include "../../include/Window/Utilities.h"
+#include "../../include/2DGraphics/Line.h"
 
 
 

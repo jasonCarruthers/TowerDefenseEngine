@@ -2,7 +2,8 @@
 #include <cmath>
 #include <cstdlib>
 #include <vector>
-#include "../include/MyMath.h"
+#include "../../include/Utilities/Vector.h"
+#include "../../include/Utilities/MyMath.h"
 
 
 
@@ -10,11 +11,17 @@
 * Global variables
 */
 std::vector<std::vector<unsigned long long>> pascalsTriangle;
+const float ZERO_UPPER_LIMIT = 0.000005f;
 
 
 /*
 * Global functions
 */
+bool IsEffectivelyZero(float num)
+{
+	return abs(num) < ZERO_UPPER_LIMIT;
+}
+
 void TestTrigThetaSign()
 {
 	std::cout << sin(MyPI() / 4.0f) << "\n";

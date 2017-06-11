@@ -1,15 +1,14 @@
 #ifndef HFILE_MYMATH
 #define HFILE_MYMATH
 
-#include <cmath>
-#include <cstdlib>
-#include <vector>
-#include "General.h"
 
+#include <vector>
+#include "../../include/Utilities/Vector.h"
 
 /*
  * Global function prototypes
  */
+bool IsEffectivelyZero(float num);
 void TestTrigThetaSign();
 void InitPascalsTriangle(); /*Call this function if the code uses Pascal's Triangle at all.
 							  While values of the triangle can be computed at runtime, this
@@ -31,6 +30,7 @@ int MyRound(float num);
 * Global variables
 */
 extern std::vector<std::vector<unsigned long long>> pascalsTriangle;
+extern const float ZERO_UPPER_LIMIT;
 
 
 #endif /*HFILE_MYMATH*/

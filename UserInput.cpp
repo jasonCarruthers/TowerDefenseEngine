@@ -1,13 +1,12 @@
-#include "../include/Main.h"
-#include "../include/General.h"
-#include "../include/UserInput.h"
-#include "../include/UI.h"
-#include "../include/Camera.h"
+#include "../../include/Main.h"
+#include "../../include/General.h"
+#include "../../include/UI/UI.h"
+#include "../../include/Camera/Camera.h"
+#include "../../include/Window/Utilities.h"
+#include "../../include/UserInput/UserInput.h"
 
 
-float cameraXZRotationAboutWorldOrigin = 45.0f; /*In degrees.*/
-float xzDistFromWorldOrigin;
-const unsigned int deltaTheta = 10;
+
 
 
 /*
@@ -42,33 +41,15 @@ void HandleKeyboardInput(unsigned char key, int mouseX, int mouseY)
 
 void HandleMouseInput(int button, int action, int mouseX, int mouseY)
 {
-	/*Pass along mouse info for updating checkboxes.*/
-	checkboxHandler->MonitorCheckboxes(mouseX, mouseY, button, action);
 
-	/*Pass along mouse info for updating sliders.*/
-	sliderHandler->MonitorSliders(mouseX, mouseY, button, action);
-
-	/*Pass along mouse info for updating buttons.*/
-	buttonHandler->MonitorButtons(mouseX, mouseY, button, action);
 }
 
 void HandlePassiveMouseMove(int mouseX, int mouseY)
 {
-	/*Pass along mouse info for updating checkboxes*/
-	checkboxHandler->MonitorCheckboxes(mouseX, mouseY, MAGIC_GARBAGE, MAGIC_GARBAGE);
-
-	/*Pass along mouse info for updating buttons*/
-	buttonHandler->MonitorButtons(mouseX, mouseY, MAGIC_GARBAGE, MAGIC_GARBAGE);
+	
 }
 
 void HandleNonpassiveMouseMove(int mouseX, int mouseY)
 {
-	/*Pass along mouse info for updating checkboxes.*/
-	checkboxHandler->MonitorCheckboxes(mouseX, mouseY, MAGIC_GARBAGE, MAGIC_GARBAGE);
-
-	/*Pass along mouse info for updating sliders.*/
-	sliderHandler->MonitorSliders(mouseX, mouseY, MAGIC_GARBAGE, MAGIC_GARBAGE);
-
-	/*Pass along mouse info for updating buttons.*/
-	buttonHandler->MonitorButtons(mouseX, mouseY, MAGIC_GARBAGE, MAGIC_GARBAGE);
+	
 }

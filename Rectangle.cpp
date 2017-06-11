@@ -1,5 +1,9 @@
 #include <iostream>
-#include "../include/Rectangle.h"
+#include "../../include/2DGraphics/Color.h"
+#include "../../include/Utilities/Vector.h"
+#include "../../include/Window/Pixel.h"
+#include "../../include/Window/Utilities.h"
+#include "../../include/2DGraphics/Rectangle.h"
 
 
 
@@ -30,7 +34,7 @@ MyRectangle::MyRectangle(const Vector2I &newTopLeft, const Vector2I &newDimensio
 	topLeft.SetY(newTopLeft.GetY());
 	dimensions.SetX(newDimensions.GetX());
 	dimensions.SetY(newDimensions.GetY());
-	color.Set(newColor.GetR(), newColor.GetG(), newColor.GetB());
+	color.Set(newColor);
 }
 
 /*
@@ -184,7 +188,7 @@ void MyRectangle::SetDimensions(int newWidth, int newHeight)
 
 void MyRectangle::SetColor(const Color3 &newColor)
 {
-	color.Set(newColor.GetR(), newColor.GetG(), newColor.GetB());
+	color.Set(newColor);
 }
 
 void MyRectangle::SetColor(float newR, float newG, float newB)

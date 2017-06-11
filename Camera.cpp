@@ -1,7 +1,10 @@
-#include "../include/Main.h"
-#include "../include/General.h"
-#include "../include/Line.h"
-#include "../include/Camera.h"
+#include "../../include/Main.h"
+#include "../../include/General.h"
+#include "../../include/2DGraphics/Line.h"
+#include "../../include/Utilities/MyMath.h"
+#include "../../include/Utilities/Vector.h"
+#include "../../include/Camera/Camera.h"
+
 
 
 
@@ -35,8 +38,6 @@ Vector2F Camera::GetPosition() const
 	return mPosition;
 }
 
-
-
 /*
 * Mutators
 */
@@ -44,6 +45,8 @@ void Camera::SetPosition(const Vector2F &newPosition)
 {
 	mPosition.Set(newPosition);
 }
+
+
 
 
 /*

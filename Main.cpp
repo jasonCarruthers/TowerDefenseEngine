@@ -1,6 +1,5 @@
 /*
 * Programmer: Jason Carruthers
-* Last modified: 5/27/17
 */
 #include <GL/glut.h>
 #include <iostream>
@@ -10,14 +9,18 @@
 #include <ctime>
 #include <cmath>
 #include <cstdlib>
-#include "../include/Main.h"
-#include "../include/MyMath.h"
+#include "../include/Utilities/MyMath.h"
 #include "../include/General.h"
-#include "../include/UserInput.h"
-#include "../include/Circle.h"
-#include "../include/Rectangle.h"
-#include "../include/UI.h"
-#include "../include/Camera.h"
+#include "../include/2DGraphics/Circle.h"
+#include "../include/2DGraphics/Rectangle.h"
+#include "../include/UI/UI.h"
+#include "../include/Camera/Camera.h"
+#include "../include/Utilities/Vector.h"
+#include "../include/2DGraphics/Color.h"
+#include "../include/Window/Pixel.h"
+#include "../include/Window/Utilities.h"
+#include "../include/UserInput/UserInput.h"
+#include "../include/Main.h"
 
 
 
@@ -43,7 +46,7 @@ void ColorizeScreen()
 	{
 		for (int x = 0; x < (int)WINDOW_WIDTH; x++)
 		{
-			SetPixel(x, y, GetRandomCurveColor().GetColor3());
+			SetPixel(x, y, GetRandomBrightColor().GetColor3());
 		}
 	}
 }

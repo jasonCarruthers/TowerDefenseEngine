@@ -3,9 +3,13 @@
 
 
 
-#include <iostream>
+#include <vector>
 #include <string>
-#include "Rectangle.h"
+#include "../../include/Utilities/Vector.h"
+#include "../../include/Window/Utilities.h"
+#include "../../include/2DGraphics/Color.h"
+#include "../../include/2DGraphics/Rectangle.h"
+
 
 
 /*
@@ -27,8 +31,8 @@ public:
 		Num__PressedStates,
 	};
 public:
-	const Color3 HOVERED_COLOR = Color3(1.0f, 1.0f, 0.0f);
-	const Vector2I TEXT_OFFSET = Vector2I(10, 10); /*Offset between button edges and the text.*/
+	static const Color3 HOVERED_COLOR;
+	static const Vector2I TEXT_OFFSET; /*Offset between button edges and the text.*/
 public:
 	/*
 	 * Constructor(s)
@@ -166,12 +170,10 @@ public:
 		Num__PressedStates,
 	};
 public:
-	const Color3 NORMAL_COLOR = Color3(1.0f, 1.0f, 1.0f);
-	const Color3 HOVERED_COLOR = Color3(1.0f, 1.0f, 0.0f);
-	const Color3 PRESSED_COLOR = Color3(0.2f, 0.7f, 0.2f);
-	const Color3 HOVERED_AND_PRESSED_COLOR = Color3(0.5f * HOVERED_COLOR.GetR() + 0.5f * PRESSED_COLOR.GetR(),
-													0.5f * HOVERED_COLOR.GetG() + 0.5f * PRESSED_COLOR.GetG(),
-													0.5f * HOVERED_COLOR.GetB() + 0.5f * PRESSED_COLOR.GetB());
+	static const Color3 NORMAL_COLOR;
+	static const Color3 HOVERED_COLOR;
+	static const Color3 PRESSED_COLOR;
+	static const Color3 HOVERED_AND_PRESSED_COLOR;
 public:
 	/*
 	* Constructor(s)
@@ -312,61 +314,14 @@ private:
 /*
 * Global function prototypes
 */
-void InitGUI();
-void DrawGUI();
 Vector2F GetRasterPosition(const Vector2I &desiredPos, int strLen);
 Vector2I GetTextDimensions(const std::string &text);
 
-void ControlPointVisibilityEnabled(); /*Sets control points visible for all surfaces.*/
-void ControlPointVisibilityDisabled(); /*Sets control points NOT visible for all surfaces.*/
-void ControlMeshVisibiliytEnabled(); /*Sets control mesh visible for all surfaces.*/
-void ControlMeshVisibiliytDisabled(); /*Sets control mesh NOT visible for all surfaces.*/
-void SurfaceMeshVisibilityEnabled(); /*Sets surface mesh visible for all surfaces.*/
-void SurfaceMeshVisibilityDisabled(); /*Sets surface mesh NOT visible for all surfaces.*/
-void GouraudShadingVisibilityEnabled(); /*Sets Gouraud shading visible for all surfaces.*/
-void GouraudShadingVisibilityDisabled(); /*Sets Gouraud shading NOT visible for all surfaces.*/
-void InsertRow(); /*Inserts a new row into the NURBS surface in focus.*/
-void InsertColumn(); /*Inserts a new column into the NURBS surface in focus.*/
-void DeleteRow(); /*Deletes a row from the NURBS surface in focus.*/
-void DeleteColumn(); /*Deletes a column from the NURBS surface in focus.*/
-void IncreaseX(); /*Increase x component of the control point in focus.*/
-void DecreaseX(); /*Decrease x component of the control point in focus.*/
-void IncreaseY(); /*Increase y component of the control point in focus.*/
-void DecreaseY(); /*Decrease y component of the control point in focus.*/
-void IncreaseZ(); /*Increase z component of the control point in focus.*/
-void DecreaseZ(); /*Decrease z component of the control point in focus.*/
-
-void DrawCircleAroundObjectInFocus(const Vector2I &center, const Color3 &color = Color3(1.0f, 1.0f, 0.0f));
-void DrawCircleAroundControlPointInFocus(const Color3 &color = Color3(1, 1, 0));
 
 /*
  * Global variables
  */
-extern MyRectangle *curveSpace; /*The screen space where the user can draw curves: everywhere
-								  on the screen except where panels and other relevent
-								  GUI objects are.*/
-extern MyRectangle *verticalPanel;
-extern CheckboxHandler *checkboxHandler;
-extern Checkbox *controlPointCheckbox;
-extern Checkbox *controlMeshCheckbox;
-extern Checkbox *surfaceMeshCheckbox;
-extern Checkbox *gouraudShadingCheckbox;
-extern SliderHandler *sliderHandler;
-extern Slider *resolutionSlider;
-extern Slider *orderKSlider;
-extern Slider *orderLSlider;
-extern Slider *weightSlider;
-extern ButtonHandler *buttonHandler;
-extern Button *insertRowButton;
-extern Button *insertColumnButton;
-extern Button *deleteRowButton;
-extern Button *deleteColumnButton;
-extern Button *increaseXButton;
-extern Button *decreaseXButton;
-extern Button *increaseYButton;
-extern Button *decreaseYButton;
-extern Button *increaseZButton;
-extern Button *decreaseZButton;
+
 
 
 #endif /*HFILE_UI*/

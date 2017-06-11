@@ -1,9 +1,10 @@
 #ifndef HFILE_CIRCLE
 #define HFILE_CIRCLE
 
-
-#include "General.h"
 #include <vector>
+#include "../../include/Utilities/Vector.h"
+#include "../../include/2DGraphics/Color.h"
+
 
 
 class Circle

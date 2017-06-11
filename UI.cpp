@@ -1,11 +1,14 @@
 #include <GL/glut.h>
+#include <iostream>
 #include <string>
-#include "../include/Main.h"
-#include "../include/General.h"
-#include "../include/Circle.h"
-#include "../include/Rectangle.h"
-#include "../include/UI.h"
-#include "../include/Tree.h"
+#include "../../include/Main.h"
+#include "../../include/2DGraphics/Circle.h"
+#include "../../include/2DGraphics/Rectangle.h"
+#include "../../include/Utilities/Tree.h"
+#include "../../include/Utilities/Vector.h"
+#include "../../include/2DGraphics/Color.h"
+#include "../../include/Window/Utilities.h"
+#include "../../include/UI/UI.h"
 
 
 
@@ -45,7 +48,13 @@ Button *decreaseZButton;
 * -------------------------------------------------------------------------------------------------------
 */
 /*
-* Constructor(s)
+* Static const member variables
+*/
+const Color3 Button::HOVERED_COLOR = Color3(1.0f, 1.0f, 0.0f);
+const Vector2I Button::TEXT_OFFSET = Vector2I(10, 10); /*Offset between button edges and the text.*/
+
+/*
+* Constructors
 */
 Button::Button(const std::string &newText, const MyRectangle &newRect, void *newActionFcn)
 {
@@ -112,11 +121,11 @@ void Button::Draw() const
 	if (mPressedState == NotPressed && mHoveredState == NotHovered)
 		mRect->Draw();
 	else if (mPressedState == Pressed && mHoveredState == NotHovered)
-		mRect->Draw(Color3(mRect->GetColor().GetR() / 2.0f, mRect->GetColor().GetG() / 2.0f, mRect->GetColor().GetB() / 2.0f));
+		mRect->Draw(Color3(mRect->GetColor().GetRed() / 2.0f, mRect->GetColor().GetGreen() / 2.0f, mRect->GetColor().GetBlue() / 2.0f));
 	else if (mPressedState == NotPressed && mHoveredState == Hovered)
-		mRect->Draw(Color3(0.5f * mRect->GetColor().GetR() + 0.5f * HOVERED_COLOR.GetR(), 0.5f * mRect->GetColor().GetG() + 0.5f * HOVERED_COLOR.GetG(), 0.5f * mRect->GetColor().GetB() + 0.5f * HOVERED_COLOR.GetB()));
+		mRect->Draw(Color3(0.5f * mRect->GetColor().GetRed() + 0.5f * HOVERED_COLOR.GetRed(), 0.5f * mRect->GetColor().GetGreen() + 0.5f * HOVERED_COLOR.GetGreen(), 0.5f * mRect->GetColor().GetBlue() + 0.5f * HOVERED_COLOR.GetBlue()));
 	else /*(mPressedState == Pressed && mHoveredState == Hovered)*/
-		mRect->Draw(Color3(0.25f * mRect->GetColor().GetR() + 0.5f * HOVERED_COLOR.GetR(), 0.25f * mRect->GetColor().GetG() + 0.5f * HOVERED_COLOR.GetG(), 0.25f * mRect->GetColor().GetB() + 0.5f * HOVERED_COLOR.GetB()));
+		mRect->Draw(Color3(0.25f * mRect->GetColor().GetRed() + 0.5f * HOVERED_COLOR.GetRed(), 0.25f * mRect->GetColor().GetGreen() + 0.5f * HOVERED_COLOR.GetGreen(), 0.25f * mRect->GetColor().GetBlue() + 0.5f * HOVERED_COLOR.GetBlue()));
 }
 
 /*
@@ -420,6 +429,16 @@ void RadioButtonGroupHandler::InsertRadioButtonGroup(const RadioButtonGroup &new
 * Implementation of class Checkbox
 * -------------------------------------------------------------------------------------------------------
 */
+/*
+* static const member variables
+*/
+const Color3 Checkbox::NORMAL_COLOR = Color3(1.0f, 1.0f, 1.0f);
+const Color3 Checkbox::HOVERED_COLOR = Color3(1.0f, 1.0f, 0.0f);
+const Color3 Checkbox::PRESSED_COLOR = Color3(0.2f, 0.7f, 0.2f);
+const Color3 Checkbox::HOVERED_AND_PRESSED_COLOR = Color3(0.5f * HOVERED_COLOR.GetRed() + 0.5f * PRESSED_COLOR.GetRed(),
+	0.5f * HOVERED_COLOR.GetGreen() + 0.5f * PRESSED_COLOR.GetGreen(),
+	0.5f * HOVERED_COLOR.GetBlue() + 0.5f * PRESSED_COLOR.GetBlue());
+
 /*
 * Constructor(s)
 */
@@ -857,83 +876,6 @@ void SliderHandler::InsertSlider(const Slider &newSlider)
 /*
  * Global functions
  */
-void InitGUI()
-{
-	
-}
-
-void DrawGUI()
-{
-	/*
-	 * ----------------------------------------------------------------------------------------
-	 * Draw text. Text will always draw on top of everything else, so it's ok to draw it first.
-	 * NOTE: OpenGL positions text using glRasterPos(...), which takes an x and a y value each
-	 *		 in the range of [-1, 1], relative to center of screen with origin at bottom left
-	 *		 corner of screen.
-	 * ----------------------------------------------------------------------------------------
-	 */
-	glColor3f(0.0, 1.0, 0.0); /*Set text color*/
-
-	Vector2F rasterPos;
-	std::string str;
-	/*
-	* controlPointCheckbox
-	*/
-	str = "Control Points";
-	rasterPos = GetRasterPosition(Vector2I(50, 110), str.size());
-	glRasterPos2f(rasterPos.GetX(), rasterPos.GetY());
-	for (unsigned int i = 0; i < str.size(); i++)
-		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_10, str[i]);
-
-	/*
-	* controlMeshCheckbox
-	*/
-	str = "Control Mesh";
-	rasterPos = GetRasterPosition(Vector2I(50, 80), str.size());
-	glRasterPos2f(rasterPos.GetX(), rasterPos.GetY());
-	for (unsigned int i = 0; i < str.size(); i++)
-		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_10, str[i]);
-
-	/*
-	 * surfaceMeshCheckbox
-	 */
-	str = "Surface Mesh";
-	rasterPos = GetRasterPosition(Vector2I(50, 50), str.size());
-	glRasterPos2f(rasterPos.GetX(), rasterPos.GetY());
-	for (unsigned int i = 0; i < str.size(); i++)
-		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_10, str[i]);
-
-	/*
-	* gouraudShadingCheckbox
-	*/
-	str = "Gouraud Shading";
-	rasterPos = GetRasterPosition(Vector2I(50, 20), str.size());
-	glRasterPos2f(rasterPos.GetX(), rasterPos.GetY());	
-	for (unsigned int i = 0; i < str.size(); i++)
-		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_10, str[i]);
-
-	/*Reposition view frustrum at the "normal" spot.
-	  NOTE: Do this after displaying any text.*/
-	glRasterPos2f(-1, -1);
-	/*
-	 * ----------------------------------------------------------------------------------------
-	 * End drawing text
-	 * ----------------------------------------------------------------------------------------
-	 */
-
-
-	/*Draw vertical panel(s)*/
-	verticalPanel->Draw();
-
-	/*Draw checkbox(es) monitored by the checkboxHandler*/
-	checkboxHandler->DrawCheckboxes();
-	
-	/*Draw slider(s) monitored by the sliderHandler*/
-	sliderHandler->DrawSliders();
-
-	/*Draw button(s) monitored by the buttonHandler*/
-	buttonHandler->DrawButtons();
-}
 
 /*Takes a desired position and converts it to the actual position where the
  *text should be drawn; text is drawn relative to its center, and with varying

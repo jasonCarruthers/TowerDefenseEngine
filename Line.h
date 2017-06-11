@@ -1,10 +1,14 @@
 #ifndef HFILE_LINE
 #define HFILE_LINE
 
-#include "General.h"
-#include "MyMath.h"
+
 #include <iostream>
 #include <vector>
+#include "../../include/Window/Utilities.h"
+#include "../../include/Utilities/Vector.h"
+#include "../../include/2DGraphics/Color.h"
+#include "../../include/Utilities/MyMath.h"
+
 
 
 /*
@@ -40,7 +44,7 @@ public:
 		p1.SetY(coord1.GetY());
 		p2.SetX(coord2.GetX());
 		p2.SetY(coord2.GetY());
-		color.Set(newColor.GetR(), newColor.GetG(), newColor.GetB());
+		color.Set(newColor.GetRed(), newColor.GetGreen(), newColor.GetBlue());
 		SetPixels();
 	}
 
@@ -111,7 +115,7 @@ public:
 	}
 	void SetColor(const Color3 &newColor)
 	{
-		color.Set(newColor.GetR(), newColor.GetG(), newColor.GetB());
+		color.Set(newColor.GetRed(), newColor.GetGreen(), newColor.GetBlue());
 	}
 	//Bresenham line-drawing function
 private:
