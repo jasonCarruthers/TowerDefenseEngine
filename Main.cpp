@@ -19,8 +19,11 @@
 #include "../include/2DGraphics/Color.h"
 #include "../include/Window/Pixel.h"
 #include "../include/Window/Utilities.h"
+#include "../include/2DGraphics/Image.h"
 #include "../include/UserInput/UserInput.h"
 #include "../include/Main.h"
+#include "../ImageTest.h"
+#include "../BitReaderTestRunner.h"
 
 
 
@@ -61,7 +64,7 @@ int main(int argc, char *argv[])
 
 	InitWindow();
 	RefreshScreen();
-	ColorizeScreen();
+	//ColorizeScreen();
 
 	glutDisplayFunc(Display);
 	glutReshapeFunc(ReshapeWindow);
@@ -69,6 +72,16 @@ int main(int argc, char *argv[])
 	glutMouseFunc(MouseInput);
 	glutPassiveMotionFunc(PassiveMouseMove);
 	glutMotionFunc(NonpassiveMouseMove);
+
+    BitReaderTestRunner::RunTests();
+    //RunUnitTests();
+    //CreateTestGIF_2x1White();
+    GIF testGIF = GIF("image/FourColorsOnWhite_8x16.gif");
+    //testGIF.LoadAndDisplayFileContents("image/BlackAndWhite.gif");
+    //testGIF.Load("image/Rotating_earth_large.gif");
+    std::cout << "\n\n\n";
+    testGIF.DisplayVariables();
+    testGIF.Draw();
 
 	glutMainLoop();
 	return 0;

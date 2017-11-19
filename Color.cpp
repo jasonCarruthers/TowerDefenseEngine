@@ -114,8 +114,8 @@ Color3 operator/(const Color3 &left, float divisor)
 {
 	if (IsEffectivelyZero(divisor))
 	{
-		Logger::GetInstance().Log("Divide by zero.");
-		abort();
+		Logger::GetInstancePtr()->Log("Divide by zero.", Logger::LogType_Fatal);
+        exit(EXIT_FAILURE);
 	}
 
 	Color3 *ret = new Color3();
